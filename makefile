@@ -27,7 +27,7 @@ graph2.dat: graph libgauss.so
 	./graph libgauss.so graph2.dat
 
 hist1.dat: histgram
-	./histgram mono/LENNA.bmp hist1.dat
+	./histgram $(IMG) hist1.dat
 
 hist2.dat: histgram gamma.bmp
 	./histgram gamma.bmp hist2.dat
