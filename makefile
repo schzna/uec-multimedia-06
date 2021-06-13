@@ -21,10 +21,10 @@ $(GRPH): $(DAT_GRPH)
 	gnuplot graph.plt -e 'set out "$@"; plot "$(subst .png,.dat,$@)" using 1:2 with lines'
 
 graph1.dat: graph libgamma.so
-	./graph libgamma.so graph1.dat
+	./graph "$(shell pwd)/libgamma.so" graph1.dat
 
 graph2.dat: graph libgauss.so
-	./graph libgauss.so graph2.dat
+	./graph "$(shell pwd)/libgauss.so" graph2.dat
 
 hist1.dat: histgram
 	./histgram $(IMG) hist1.dat
@@ -39,10 +39,10 @@ histgram: histgram.cpp
 	$(CC) $(COPT) -o histgram histgram.cpp
 
 gamma.bmp: libgamma.so transimg
-	./transimg libgamma.so $(IMG) gamma.bmp
+	./transimg "$(shell pwd)/libgamma.so" $(IMG) gamma.bmp
 
 gauss.bmp: libgauss.so transimg
-	./transimg libgauss.so $(IMG) gauss.bmp
+	./transimg "$(shell pwd)/libgauss.so" $(IMG) gauss.bmp
 
 $(SO): $(SO_CPP)
 	$(CC) $(COPT) -shared -fPIC -o $@ $(subst .so,.cpp,$(subst lib,,$@))
@@ -58,6 +58,7 @@ clean:
 	rm graph
 	rm histgram
 	rm libgamma.so
+	rm libgauss.so
 	rm gamma.bmp
 	rm *.png
 	rm *.dat
