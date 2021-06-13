@@ -1,0 +1,12 @@
+*
+!makefile
+!*/
+!*.*
+
+*.pdf
+.vscode
+mono
+*.dat
+*.png
+*.bmp
+*.so
